@@ -98,11 +98,10 @@
     90% { opacity: 1; }
     100% { opacity: 0; }
   }
-
 </style>
 </head>
 <body>
-<!--EDIT HERE!!!-->
+
 <div class="card" id="card">
   <div class="logo">YourBrand</div>
   <h1>✅ Verified Purchase</h1>
@@ -114,7 +113,7 @@
   <div class="disclaimer">
     This page verifies the purchase price paid to YourBrand.<br>
     No personal customer information is displayed.<br>
-    This page is read-only and static.
+    Tap the screen to hear cha-ching & see money rain!
   </div>
 </div>
 
@@ -122,35 +121,40 @@
 
 <script>
   const body = document.body;
-  const numBills = 30; // More bills for dramatic effect
+  const numBills = 30;
+  const bills = [];
 
+  // Generate bills
   for(let i=0; i<numBills; i++){
     const bill = document.createElement('div');
-    bill.className = 'bill';
-    bill.textContent = '💵';
-    bill.style.left = Math.random() * 100 + 'vw';
-    bill.style.fontSize = (18 + Math.random() * 20) + 'px';
-    bill.style.animationDuration = (2 + Math.random() * 3) + 's, ' + (2 + Math.random()*3) + 's, ' + (2 + Math.random()*3) + 's';
-    bill.style.animationDelay = Math.random()*2 + 's';
+    bill.className='bill';
+    bill.textContent='💵';
+    bill.style.left = Math.random()*100+'vw';
+    bill.style.fontSize = (18 + Math.random() * 20)+'px';
+    bill.style.animationDuration = (2 + Math.random() * 3)+'s, ' + (2 + Math.random()*3)+'s, ' + (2 + Math.random()*3)+'s';
+    bill.style.animationDelay = Math.random()*2+'s';
     body.appendChild(bill);
+    bills.push(bill);
+    // Force reflow for animation to start
+    void bill.offsetWidth;
   }
 
-  // Play cha-ching on first tap/click
+  // Play sound & restart animation on tap
   const audio = document.getElementById('chaChing');
-  const card = document.getElementById('card');
   let played = false;
 
-  function playSound() {
+  function startAnimation(){
     if(!played){
       audio.volume = 0.5;
-      audio.play();
+      audio.play().catch(()=>{}); // catch blocked autoplay
       played = true;
     }
   }
 
-  card.addEventListener('touchstart', playSound);
-  card.addEventListener('click', playSound);
-</script>
+  const card = document.getElementById('card');
+  card.addEventListener('touchstart', startAnimation);
+  card.addEventListener('click', startAnimation);
 
+</script>
 </body>
 </html>
