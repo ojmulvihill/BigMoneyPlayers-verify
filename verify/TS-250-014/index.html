@@ -2,50 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Verified Purchase</title>
+  <title>Verified Purchase | YourBrand</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #f7f7f7;
-      padding: 24px;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
     }
     .card {
-      max-width: 420px;
-      margin: auto;
       background: #ffffff;
-      border-radius: 12px;
-      padding: 24px;
+      border-radius: 16px;
+      padding: 30px 40px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+      text-align: center;
     }
     h1 {
-      font-size: 22px;
+      font-size: 24px;
+      margin-bottom: 16px;
+      color: #2e2e2e;
     }
     .price {
-      font-size: 32px;
+      font-size: 36px;
       font-weight: bold;
-      margin: 12px 0;
+      margin: 16px 0;
+      color: #1a73e8;
     }
     .row {
-      margin: 6px 0;
+      margin: 10px 0;
+      font-size: 16px;
+      color: #333;
     }
-    .muted {
+    .serial {
+      font-weight: bold;
+      color: #555;
+      margin-top: 8px;
+    }
+    .disclaimer {
       font-size: 12px;
-      color: #666;
-      margin-top: 14px;
+      color: #777;
+      margin-top: 20px;
+      line-height: 1.4;
+    }
+    .logo {
+      margin-bottom: 20px;
+      font-weight: bold;
+      font-size: 18px;
+      color: #1a73e8;
+      letter-spacing: 1px;
     }
   </style>
 </head>
 <body>
   <div class="card">
+    <div class="logo">YourBrand</div>
     <h1>✅ Verified Purchase</h1>
     <div class="price">$100.00 USD</div>
-    <div class="row"><strong>Product:</strong> “This Shirt Cost $100”</div>
+    <div class="row"><strong>Product:</strong> “This Shirt Cost $100” (Novelty Tee)</div>
     <div class="row"><strong>Purchased:</strong> January 30, 2026</div>
-    <div class="row"><strong>Order ID:</strong> ****A892</div>
-    <div class="row"><strong>Serial:</strong> TS-250-014</div>
-    <div class="muted">
-      This page verifies the purchase price paid to YourBrand.<br>
-      No personal data is displayed.
+    <div class="row"><strong>Order ID:</strong> ****A895</div>
+    <div class="row serial"><strong>Serial:</strong> TS-250-014</div>
+    <div class="disclaimer">
+      This page verifies the purchase price paid to YourBrand.  
+      No personal customer information is displayed.  
+      This page is read-only and static.
     </div>
   </div>
 </body>
