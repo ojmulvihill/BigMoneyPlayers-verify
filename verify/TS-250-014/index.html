@@ -3,158 +3,91 @@
 <head>
 <meta charset="UTF-8">
 <title>Verified Purchase | YourBrand</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
   body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: sans-serif;
     background: #f0f2f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
     margin: 0;
     overflow-x: hidden;
     position: relative;
-    touch-action: manipulation;
   }
 
-  /* Card styling */
   .card {
-    background: #ffffff;
-    border-radius: 18px;
-    padding: 28px 22px;
-    max-width: 90vw;
-    width: 100%;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 400px;
+    margin: 50px auto;
     text-align: center;
-    z-index: 10;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     position: relative;
+    z-index: 10;
   }
 
-  h1 {
-    font-size: 24px;
-    margin-bottom: 16px;
-    color: #2e2e2e;
-  }
+  h1 { margin-bottom: 10px; }
+  .price { font-size: 28px; color: #1a73e8; font-weight: bold; margin: 15px 0; }
+  .row { margin: 5px 0; }
+  .serial { font-weight: bold; }
 
-  .price {
-    font-size: 32px;
-    font-weight: bold;
-    margin: 16px 0;
-    color: #1a73e8;
-  }
-
-  .row {
-    margin: 8px 0;
-    font-size: 15px;
-    color: #333;
-  }
-
-  .serial {
-    font-weight: bold;
-    color: #555;
-    margin-top: 6px;
-  }
-
-  .disclaimer {
-    font-size: 12px;
-    color: #777;
-    margin-top: 18px;
-    line-height: 1.4;
-  }
-
-  .logo {
-    margin-bottom: 18px;
-    font-weight: bold;
-    font-size: 17px;
-    color: #1a73e8;
-    letter-spacing: 1px;
-  }
-
-  /* Dollar bills */
   .bill {
     position: fixed;
     top: -50px;
     font-size: 24px;
-    opacity: 0.9;
     animation-name: fall, spin, fadeOut;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     z-index: 5;
   }
 
-  @keyframes fall {
-    0% { transform: translateY(-60px); }
-    100% { transform: translateY(110vh); }
-  }
-
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-
-  @keyframes fadeOut {
-    0% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { opacity: 0; }
-  }
+  @keyframes fall { 0% { transform: translateY(-60px); } 100% { transform: translateY(100vh); } }
+  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+  @keyframes fadeOut { 0% { opacity: 1; } 90% { opacity: 1; } 100% { opacity: 0; } }
 </style>
 </head>
 <body>
 
 <div class="card" id="card">
-  <div class="logo">YourBrand</div>
   <h1>✅ Verified Purchase</h1>
   <div class="price">$250.00 USD</div>
-  <div class="row"><strong>Product:</strong> “This Shirt Cost $250” (Novelty Tee)</div>
+  <div class="row"><strong>Product:</strong> “This Shirt Cost $250”</div>
   <div class="row"><strong>Purchased:</strong> January 28, 2026</div>
   <div class="row"><strong>Order ID:</strong> ****A93F</div>
   <div class="row serial"><strong>Serial:</strong> TS-250-014</div>
-  <div class="disclaimer">
-    This page verifies the purchase price paid to YourBrand.<br>
-    No personal customer information is displayed.<br>
-    Tap the screen to hear cha-ching & see money rain!
-  </div>
+  <div class="row" style="font-size:12px; color:#777;">Tap anywhere to see money rain & hear cha-ching!</div>
 </div>
 
 <audio id="chaChing" src="https://www.soundjay.com/misc/sounds/cash-register-01.mp3"></audio>
 
 <script>
   const body = document.body;
-  const numBills = 30;
-  const bills = [];
+  const numBills = 20;
 
-  // Generate bills
-  for(let i=0; i<numBills; i++){
+  for(let i=0;i<numBills;i++){
     const bill = document.createElement('div');
-    bill.className='bill';
-    bill.textContent='💵';
+    bill.className = 'bill';
+    bill.textContent = '💵';
     bill.style.left = Math.random()*100+'vw';
-    bill.style.fontSize = (18 + Math.random() * 20)+'px';
-    bill.style.animationDuration = (2 + Math.random() * 3)+'s, ' + (2 + Math.random()*3)+'s, ' + (2 + Math.random()*3)+'s';
+    bill.style.fontSize = (18 + Math.random()*15)+'px';
+    bill.style.animationDuration = (2 + Math.random()*3)+'s, ' + (2 + Math.random()*3)+'s, ' + (2 + Math.random()*3)+'s';
     bill.style.animationDelay = Math.random()*2+'s';
     body.appendChild(bill);
-    bills.push(bill);
-    // Force reflow for animation to start
-    void bill.offsetWidth;
   }
 
-  // Play sound & restart animation on tap
   const audio = document.getElementById('chaChing');
   let played = false;
 
-  function startAnimation(){
+  function startEffect() {
     if(!played){
       audio.volume = 0.5;
-      audio.play().catch(()=>{}); // catch blocked autoplay
+      audio.play().catch(()=>{}); // ignore blocked autoplay
       played = true;
     }
   }
 
   const card = document.getElementById('card');
-  card.addEventListener('touchstart', startAnimation);
-  card.addEventListener('click', startAnimation);
-
+  card.addEventListener('click', startEffect);
+  card.addEventListener('touchstart', startEffect);
 </script>
+
 </body>
 </html>
