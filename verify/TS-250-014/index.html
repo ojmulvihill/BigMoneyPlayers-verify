@@ -13,7 +13,8 @@
       align-items: center;
       min-height: 100vh;
       margin: 0;
-      padding: 20px;
+      overflow-x: hidden;
+      position: relative;
     }
     .card {
       background: #ffffff;
@@ -23,6 +24,8 @@
       width: 100%;
       box-shadow: 0 12px 25px rgba(0,0,0,0.1);
       text-align: center;
+      z-index: 10;
+      position: relative;
     }
     h1 {
       font-size: 24px;
@@ -58,22 +61,64 @@
       color: #1a73e8;
       letter-spacing: 1px;
     }
+
+    /* Dollar animation */
+    .bill {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      animation-name: fall;
+      animation-duration: 3s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      z-index: 5;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-50px) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(360deg); }
+    }
   </style>
 </head>
 <body>
+<!--EDIT VALUES HERE!!!-->
   <div class="card">
-    <div class="logo">BigMoneyPlayers</div>
+    <div class="logo">YourBrand</div>
     <h1>✅ Verified Purchase</h1>
-    <div class="price">$100.00 USD</div>
+    <div class="price">100.00 USD</div>
     <div class="row"><strong>Product:</strong> “This Shirt Cost $100” (Novelty Tee)</div>
     <div class="row"><strong>Purchased:</strong> January 30, 2026</div>
-    <div class="row"><strong>Order ID:</strong> ****A895</div>
+    <div class="row"><strong>Order ID:</strong> ****A85F</div>
     <div class="row serial"><strong>Serial:</strong> TS-250-014</div>
     <div class="disclaimer">
-      This page verifies the purchase price paid to YourBrand.  
-      No personal customer information is displayed.  
+      This page verifies the purchase price paid to YourBrand.<br>
+      No personal customer information is displayed.<br>
       This page is read-only and static.
     </div>
   </div>
+
+  <!-- Cha-ching sound -->
+  <audio id="chaChing" src="https://www.soundjay.com/misc/sounds/cash-register-01.mp3" autoplay></audio>
+
+  <script>
+    // Generate dollar bills
+    const numBills = 20;
+    const body = document.body;
+
+    for(let i=0; i<numBills; i++){
+      const bill = document.createElement('div');
+      bill.className = 'bill';
+      bill.style.left = Math.random() * 100 + 'vw';
+      bill.style.animationDuration = (2 + Math.random() * 2) + 's';
+      bill.textContent = '💵';
+      body.appendChild(bill);
+    }
+
+    // Play cha-ching on load
+    const audio = document.getElementById('chaChing');
+    audio.volume = 0.5; // not too loud
+    audio.play();
+  </script>
+
 </body>
 </html>
