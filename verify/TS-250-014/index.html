@@ -67,26 +67,16 @@
       position: fixed;
       top: -50px;
       font-size: 24px;
-      animation-name: fall, spin, fadeOut;
+      animation-name: fall;
+      animation-duration: 3s;
       animation-timing-function: linear;
       animation-iteration-count: infinite;
       z-index: 5;
     }
 
     @keyframes fall {
-      0% { transform: translateY(-50px); }
-      100% { transform: translateY(110vh); }
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    @keyframes fadeOut {
-      0% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { opacity: 0; }
+      0% { transform: translateY(-50px) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(360deg); }
     }
   </style>
 </head>
@@ -111,26 +101,23 @@
   <audio id="chaChing" src="https://www.soundjay.com/misc/sounds/cash-register-01.mp3" autoplay></audio>
 
   <script>
-    const numBills = 30; // More bills for viral effect
+    // Generate dollar bills
+    const numBills = 20;
     const body = document.body;
 
-    for(let i = 0; i < numBills; i++){
+    for(let i=0; i<numBills; i++){
       const bill = document.createElement('div');
       bill.className = 'bill';
-      bill.textContent = '💵';
       bill.style.left = Math.random() * 100 + 'vw';
-      bill.style.fontSize = (18 + Math.random() * 20) + 'px';
-      bill.style.animationDuration = 
-        (2 + Math.random() * 3) + 's, ' + // fall
-        (2 + Math.random() * 3) + 's, ' + // spin
-        (2 + Math.random() * 3) + 's';    // fadeOut
-      bill.style.animationDelay = Math.random() * 2 + 's';
+      bill.style.animationDuration = (2 + Math.random() * 2) + 's';
+      bill.textContent = '💵';
       body.appendChild(bill);
     }
 
+    // Play cha-ching on load
     const audio = document.getElementById('chaChing');
-    audio.volume = 0.5;
-    audio.play().catch(()=>{ console.log("Autoplay blocked on this browser/device"); });
+    audio.volume = 0.5; // not too loud
+    audio.play();
   </script>
 
 </body>
