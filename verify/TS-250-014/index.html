@@ -46,17 +46,17 @@
 </head>
 <body>
 
-<div class="card" id="card">
+<div class="card">
   <h1>✅ Verified Purchase</h1>
   <div class="price">$250.00 USD</div>
   <div class="row"><strong>Product:</strong> “This Shirt Cost $250”</div>
   <div class="row"><strong>Purchased:</strong> January 28, 2026</div>
   <div class="row"><strong>Order ID:</strong> ****A93F</div>
   <div class="row serial"><strong>Serial:</strong> TS-250-014</div>
-  <div class="row" style="font-size:12px; color:#777;">Tap anywhere to see money rain & hear cha-ching!</div>
+  <div class="row" style="font-size:12px; color:#777;">Money raining automatically!</div>
 </div>
 
-<audio id="chaChing" src="https://www.soundjay.com/misc/sounds/cash-register-01.mp3"></audio>
+<audio id="chaChing" src="https://www.soundjay.com/misc/sounds/cash-register-01.mp3" autoplay></audio>
 
 <script>
   const body = document.body;
@@ -73,20 +73,10 @@
     body.appendChild(bill);
   }
 
+  // Attempt to play audio immediately
   const audio = document.getElementById('chaChing');
-  let played = false;
-
-  function startEffect() {
-    if(!played){
-      audio.volume = 0.5;
-      audio.play().catch(()=>{}); // ignore blocked autoplay
-      played = true;
-    }
-  }
-
-  const card = document.getElementById('card');
-  card.addEventListener('click', startEffect);
-  card.addEventListener('touchstart', startEffect);
+  audio.volume = 0.5;
+  audio.play().catch(()=>{ console.log("Autoplay blocked on this device/browser"); });
 </script>
 
 </body>
