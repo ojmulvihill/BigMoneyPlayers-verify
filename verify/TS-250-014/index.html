@@ -1,83 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Verified Purchase | YourBrand</title>
-<style>
-  body {
-    font-family: sans-serif;
-    background: #f0f2f5;
-    margin: 0;
-    overflow-x: hidden;
-    position: relative;
-  }
+  <meta charset="UTF-8">
+  <title>Verified Purchase | YourBrand</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
+      position: relative;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 30px 40px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+      text-align: center;
+      z-index: 10;
+      position: relative;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 16px;
+      color: #2e2e2e;
+    }
+    .price {
+      font-size: 36px;
+      font-weight: bold;
+      margin: 16px 0;
+      color: #1a73e8;
+    }
+    .row {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #333;
+    }
+    .serial {
+      font-weight: bold;
+      color: #555;
+      margin-top: 8px;
+    }
+    .disclaimer {
+      font-size: 12px;
+      color: #777;
+      margin-top: 20px;
+      line-height: 1.4;
+    }
+    .logo {
+      margin-bottom: 20px;
+      font-weight: bold;
+      font-size: 18px;
+      color: #1a73e8;
+      letter-spacing: 1px;
+    }
 
-  .card {
-    background: white;
-    border-radius: 15px;
-    padding: 30px;
-    max-width: 400px;
-    margin: 50px auto;
-    text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    position: relative;
-    z-index: 10;
-  }
+    /* Dollar animation */
+    .bill {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      animation-name: fall, spin, fadeOut;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      z-index: 5;
+    }
 
-  h1 { margin-bottom: 10px; }
-  .price { font-size: 28px; color: #1a73e8; font-weight: bold; margin: 15px 0; }
-  .row { margin: 5px 0; }
-  .serial { font-weight: bold; }
+    @keyframes fall {
+      0% { transform: translateY(-50px); }
+      100% { transform: translateY(110vh); }
+    }
 
-  .bill {
-    position: fixed;
-    top: -50px;
-    font-size: 24px;
-    animation-name: fall, spin, fadeOut;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    z-index: 5;
-  }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
 
-  @keyframes fall { 0% { transform: translateY(-60px); } 100% { transform: translateY(100vh); } }
-  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-  @keyframes fadeOut { 0% { opacity: 1; } 90% { opacity: 1; } 100% { opacity: 0; } }
-</style>
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+  </style>
 </head>
 <body>
 
-<div class="card">
-  <h1>✅ Verified Purchase</h1>
-  <div class="price">$250.00 USD</div>
-  <div class="row"><strong>Product:</strong> “This Shirt Cost $250”</div>
-  <div class="row"><strong>Purchased:</strong> January 28, 2026</div>
-  <div class="row"><strong>Order ID:</strong> ****A93F</div>
-  <div class="row serial"><strong>Serial:</strong> TS-250-014</div>
-  <div class="row" style="font-size:12px; color:#777;">Money raining automatically!</div>
-</div>
+  <div class="card">
+    <div class="logo">YourBrand</div>
+    <h1>✅ Verified Purchase</h1>
+    <div class="price">$250.00 USD</div>
+    <div class="row"><strong>Product:</strong> “This Shirt Cost $250” (Novelty Tee)</div>
+    <div class="row"><strong>Purchased:</strong> January 28, 2026</div>
+    <div class="row"><strong>Order ID:</strong> ****A93F</div>
+    <div class="row serial"><strong>Serial:</strong> TS-250-014</div>
+    <div class="disclaimer">
+      This page verifies the purchase price paid to YourBrand.<br>
+      No personal customer information is displayed.<br>
+      This page is read-only and static.
+    </div>
+  </div>
 
-<audio id="chaChing" src="https://www.soundjay.com/misc/sounds/cash-register-01.mp3" autoplay></audio>
+  <!-- Cha-ching sound -->
+  <audio id="chaChing" src="https://www.soundjay.com/misc/sounds/cash-register-01.mp3" autoplay></audio>
 
-<script>
-  const body = document.body;
-  const numBills = 20;
+  <script>
+    const numBills = 30; // More bills for viral effect
+    const body = document.body;
 
-  for(let i=0;i<numBills;i++){
-    const bill = document.createElement('div');
-    bill.className = 'bill';
-    bill.textContent = '💵';
-    bill.style.left = Math.random()*100+'vw';
-    bill.style.fontSize = (18 + Math.random()*15)+'px';
-    bill.style.animationDuration = (2 + Math.random()*3)+'s, ' + (2 + Math.random()*3)+'s, ' + (2 + Math.random()*3)+'s';
-    bill.style.animationDelay = Math.random()*2+'s';
-    body.appendChild(bill);
-  }
-
-  // Attempt to play audio immediately
-  const audio = document.getElementById('chaChing');
-  audio.volume = 0.5;
-  audio.play().catch(()=>{ console.log("Autoplay blocked on this device/browser"); });
-</script>
-
-</body>
-</html>
+    for(let i = 0; i < numBills; i++){
+      const bill = document.createElement('div');
+      bill.className = 'bill';
+      bill.textContent = '💵';
+      bill.style.left = Math.random() * 100 + 'vw';
+      bill.style.fontSize = (18 + Math.random() * 20) + 'px';
+      bill.style.animationDuration = 
+        (2 + Math.random() * 3) + 's, ' + // fall
+        (2 + Math.random() * 3) + 's, ' + // spin
+        (2 + Math.rand
