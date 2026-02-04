@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Verified Purchase | BigMoneyPlayers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      overflow-x: hidden;
+      position: relative;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 30px 40px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.1);
+      text-align: center;
+      z-index: 10;
+      position: relative;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 16px;
+      color: #2e2e2e;
+    }
+    .price {
+      font-size: 36px;
+      font-weight: bold;
+      margin: 16px 0;
+      color: #1a73e8;
+    }
+    .row {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #333;
+    }
+    .serial {
+      font-weight: bold;
+      color: #555;
+      margin-top: 8px;
+    }
+    .disclaimer {
+      font-size: 12px;
+      color: #777;
+      margin-top: 20px;
+      line-height: 1.4;
+    }
+    .logo {
+      margin-bottom: 20px;
+      font-weight: bold;
+      font-size: 18px;
+      color: #1a73e8;
+      letter-spacing: 1px;
+    }
+
+    /* Dollar animation */
+    .bill {
+      position: fixed;
+      top: -50px;
+      font-size: 60px;
+      animation-name: fall;
+      animation-duration: 3s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      z-index: 5;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-50px) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="logo">BigMoneyPlayers</div>
+    
+    <!-- New Name Section -->
+    <div class="row"><strong>Name:</strong> Your Name</div>
+
+    <h1>✅ Verified Purchase</h1>
+    <div class="price">$Amount USD</div>
+    <div class="row"><strong>Product:</strong> “This Shirt Cost $Amount” (Novelty Tee)</div>
+    <div class="row"><strong>Purchased:</strong> Date</div>
+    <div class="row"><strong>Order ID:</strong> ****Order ID</div>
+    <div class="row serial"><strong>Serial:</strong> Serial Number</div>
+    <div class="disclaimer">
+      This page verifies the purchase price paid to YourBrand.<br>
+      No personal customer information is displayed.<br>
+      This page is read-only and static.
+    </div>
+  </div>
+
+  <!-- Cha-ching sound -->
+  <audio id="chaChing" src="https://www.soundjay.com/misc/sounds/cash-register-01.mp3" autoplay></audio>
+
+  <script>
+    // Generate dollar bills
+    const numBills = 20;
+    const body = document.body;
+
+    for(let i=0; i<numBills; i++){
+      const bill = document.createElement('div');
+      bill.className = 'bill';
+      bill.style.left = Math.random() * 100 + 'vw';
+      bill.style.animationDuration = (2 + Math.random() * 2) + 's';
+      bill.textContent = '💵';
+      body.appendChild(bill);
+    }
+
+    // Play cha-ching on load
+    const audio = document.getElementById('chaChing');
+    audio.volume = 0.5; // not too loud
+    audio.play();
+  </script>
+
+</body>
+</html>
